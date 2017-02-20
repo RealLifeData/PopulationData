@@ -1,0 +1,332 @@
+---
+title: "Population, Immigration and Unemployment: an exploratory analysis"
+date: "February 12, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning= FALSE)
+```
+
+
+
+
+```{r include = FALSE}
+
+
+library(plyr)
+library(dplyr)
+library(knitr)
+library(optimbase)
+library(ggplot2)
+library(data.table)
+
+setwd("C:\\Users\\owner\\Desktop\\PopulationData")
+options(scipen = 999)
+
+#FOREING BORN************************
+FB <- read.csv("Foreign.csv")
+P <- read.csv("Population.csv")
+PV <- read.csv("UNEMP2.csv")
+
+Total <- select(FB, Year, Total)
+Native <- select(FB, Year, Native)
+Foreign <- select(FB, Year, Foreign)
+Foreign_NC <- select(FB, Year, Foreign_Not_Citizen)
+Naturalized <- select(FB, Year, Naturalized)
+
+Total$Group <- "Total Population"
+Total$Color <- "blue"
+colnames(Total)[colnames(Total)=="Total"] <- "Population"
+Native$Group <- "Native Born Population"
+Native$Color <- "green"
+colnames(Native)[colnames(Native)=="Native"] <- "Population"
+Foreign$Group <- "Foreign Born Population"
+Foreign$Color <- "purple"
+colnames(Foreign)[colnames(Foreign)=="Foreign"] <- "Population"
+Foreign_NC$Group <- "Foreign Born Not Citizens"
+Foreign_NC$Color <- "orange"
+colnames(Foreign_NC)[colnames(Foreign_NC)=="Foreign_Not_Citizen"] <- "Population"
+Naturalized$Group <- "Foreign Born Naturalized Citizens"
+colnames(Naturalized)[colnames(Naturalized)=="Naturalized"] <- "Population"
+Naturalized$Color <- "red"
+
+Born_Graph <- rbind(Total, Native, Foreign, Foreign_NC, Naturalized)
+Born_Graph$Population <- Born_Graph$Population/1000000
+
+
+
+UNEMP <- read.csv("UNEMP2.csv")
+UNEMP$Illegal <- UNEMP$Illegal * 1000000
+cor.test(Foreign$Population, UNEMP$UN)
+cor.test(Total$Population, UNEMP$UN)
+cor.test(Foreign_NC$Population, UNEMP$UN)
+cor.test(Native$Population, UNEMP$UN)
+cor.test(Naturalized$Population, UNEMP$UN)
+
+
+#*******************TABLE
+
+US_Table1 <- NULL
+US_Table1$Year <- Foreign$Year
+US_Table1$Total <- Total$Population/1000000 
+US_Table1$Native <- Native$Population/1000000  
+US_Table1$Naturalized <- Naturalized$Population/1000000  
+US_Table1$Foreign <- Foreign$Population/1000000 
+US_Table1$'Foreign Not Citizens' <- Foreign_NC$Population/1000000  
+US_Table1$Illegal <- UNEMP$Illegal/1000000 
+
+US_Table1$Total <- round(US_Table1$Total, digits = 2)
+US_Table1$Native <- round(US_Table1$Native, digits = 2)
+US_Table1$Naturalized <- round(US_Table1$Naturalized, digits = 2)
+US_Table1$Foreign <- round(US_Table1$Foreign, digits = 2)
+US_Table1$'Foreign Not Citizens' <- round(US_Table1$'Foreign Not Citizens', digits = 2)
+US_Table1$Illegal <- round(US_Table1$Illegal, digits = 2)
+
+
+US_Table1 <- as.data.table(US_Table1)
+
+
+kable(US_Table1)
+
+
+
+#**********************POPULATION CHANGE STATES
+library(choroplethr)
+library(choroplethrMaps)
+data(state.regions)
+
+
+States_IMG <- select(P, REGION, NAME, INTERNATIONALMIG2010, INTERNATIONALMIG2011, INTERNATIONALMIG2012, INTERNATIONALMIG2013, INTERNATIONALMIG2014, INTERNATIONALMIG2015)
+
+States_IMG <- filter(States_IMG, NAME != "United States" & NAME != "Northwest Region" &
+                       NAME != "South Region" & NAME != "Midwest Region" &
+                       NAME != "West Region" & NAME != "Northeast Region" & NAME != "Puerto Rico" )
+         
+States_IMG <- mutate(States_IMG, Increase = INTERNATIONALMIG2010 + INTERNATIONALMIG2011 + INTERNATIONALMIG2012 + INTERNATIONALMIG2013 + INTERNATIONALMIG2014 + INTERNATIONALMIG2015)
+
+data(state.regions)
+States_Map <- NULL
+States_Map$region <- state.regions$region
+States_Map$value <- States_IMG$Increase
+States_Map <- as.data.frame(States_Map)
+#States_Map$region2 <- state.abb
+States_Map2 <- merge(States_Map, state.regions)
+
+state_choropleth(States_Map2, num_colors = 7)
+
+SUNE <- read.csv("SUNE.csv")
+SUNE$region <- sapply(SUNE$region, tolower)
+
+Crime <- read.csv("Crime.csv")
+Crime$region <- sapply(Crime$region, tolower)
+
+newdata <- States_IMG[order(States_IMG$INTERNATIONALMIG2015),] 
+
+statescor <- merge(SUNE, States_Map, by = "region")
+statescor2 <- merge(States_Map, Crime, by = "region")
+statescor3 <- merge(SUNE, Crime, by = "region")
+
+
+```
+
+
+The purpose of this analysis was to examine potential relationships between the immigrant population size and unemployment rate in the United States. 
+
+Below is a graph that indicates the total native and immigrant population sizes in the united states from 2009-2015.   This data was obtained from publicly available [census records](https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml).   All data files and R code used in this analysis can be found on my [GitHub site](https://github.com/RealLifeData).
+
+
+##Population Graph USA
+
+Population size has gone up since 2009, and this is true for native born citizens, foreign born citizens and foreign born non-citizens. 
+
+```{r fig.width= 8, fig.height = 4, echo = FALSE, warning = FALSE}
+
+Born_Graph <- filter(Born_Graph, Group != 'Total Population' & Group != 'Foreign Born Population')
+
+ggplot(Born_Graph, aes(Year, Population, fill=Group)) +
+  geom_bar(stat = "identity", colour = "black") +
+  scale_fill_manual(values=c("white","red", "blue")) +
+  ggtitle("Population of USA") +
+  labs(x = "Year", y = "Population (Millions)")
+
+           
+```
+
+
+##Population Breakdown USA (millions)
+```{r echo=FALSE}
+
+kable(US_Table1)
+```
+
+
+##Unemployment Rate
+
+Despite the increase in population size, the unemployment rate has gone down since 2009.  This means that if there is a correlation between unemployment rate and immigration into the United States, that it would be a **negative** relationship.  This means that as immigration has gone **up**, that unemployment has gone **down**.  
+
+Importantly, **correlations do not imply causation....EVER**!  What does this mean?  Just because numbers tend to go up and down together doesn't mean that one variable is **causing** the other to do anything.  More simply put, correlations could capture something that happens by coincidence.  This is true no matter how strong a correlation is.  Correlation analyses are good indicators of where to deeper, and should never be interpreted as causal on their own. 
+
+
+
+```{r echo=FALSE}
+
+ggplot(UNEMP, aes(Year, UN)) +
+  geom_bar(stat = "identity", colour = "black", fill = "blue") +
+  ggtitle("Unemployment Rate in USA") +
+  labs(x = "Year", y = "Percentage")
+
+
+
+```
+
+##Correlation Analyses
+
+First I ran a simple correlation on overall population size and unemployment rate.  This resulted in a significant relationship (*r* = -0.92, p = .002).  What do the numbers in parentheses mean?
+
+
+The *r* refers to the Pearson Correlation Coefficient, and it tells us how strong a relationship is between 2 sets of numbers. In this example, the *r* = -0.92.  This tells us a couple of things. 
+
+  
+The first is that the relationship is inverse, meaning that as one variable goes up the other goes down. This is indicated by the negative symbol in front of the statistic.  Importantly, when someone refers to a negative correlation, this means that the variables tend to change in **opposite directions**, not that they go down with one another.  A positive correlation means the reverse, that the numbers increase and decrease **in tandum with one another**.  Here we have a negative correlation because as the population rate goes up, the unemployment rate goes down.  
+    
+The second part of the statistic is also useful! The *r* refers to the Pearson Correlation Coefficient. This is a number between 0 and 1, the closer the number is to 1 then the stronger the relationship. An *r* value of 0.92 is considered really strong, because it is very close to 1.  How do we know if it is *strong enough* to say that there is a "significant relationship"?  We use the p-value to make that call. 
+    
+The p-value is typically reported at the end of the statistic, and is referred to as a "significance test".  What is a significance test?  A significance test determines the probability that you would have found the same result if the correlation coefficient (*r*) was in reality a 0.  Like the *r* statistic, the p-value is also reported as number between 0 and 1.  A p-value of 0.02 means indicates that there is a 2% probability that the relationship examined is due to chance.  Most fields of study require a p-value of 0.05  or below to indicate statistical significance. This is the "gold standard" and estimates the influence of chance to be less than 5% likely. 
+    
+To sum this up, a correlation analysis found a strong inverse relationship between the total US population size and unemployment rate (*r* = 0.92) and this is unlikely due to chance (p = 0.002  or 0.2%).
+    
+    
+```{r echo=FALSE}
+
+TotalPopulation <- Total$Population/1000000
+plot(TotalPopulation, UNEMP$UN, main = "Total Population and Unemployment Rate",
+     ylab = "Unemployment Rate", xlab = "Total Population (Millions)", col = "blue",
+     ylim = c(0, 12))
+
+
+
+```
+
+
+```{r echo=FALSE}
+
+#cor.test(Total$Population, UNEMP$UN)
+
+
+```
+
+
+There was also a negative (inverse) correlation between the unemployment rate and the foreign born population (*r* = -0.88, p = .009), but this relationship did not occur when I looked specifically at the **non citizen** foreign born population (*r* = -0.41, p = .36).  
+
+```{r echo=FALSE}
+
+
+ForeignPopulation <- Foreign$Population/1000000
+plot(ForeignPopulation, UNEMP$UN, main = "Foreign Population and Unemployment Rate",
+     ylab = "Unemployment Rate", xlab = "Foreign Population (Millions)", col = "blue",ylim = c(0, 12))
+
+#cor.test(Foreign$Population, UNEMP$UN)
+
+
+#Foreign_NCPopulation <- Foreign_NC$Population/1000000
+#plot(Foreign_NCPopulation, UNEMP$UN, main = "Foreign Non-Citizen Population and Unemployment Rate",
+     #ylab = "Unemployment Rate", xlab = "Foreign Non-Citizen Population (Millions)", col = "blue",
+     #ylim = c(0, 12))
+
+#cor.test(Foreign_NC$Population, UNEMP$UN)
+
+
+```
+
+
+Next, I did a correlation analysis on the native born and naturalized United States citizen population and unemployment rate.  The results showed statistically significant relationships between in both cases (Native: *r* = -0.94, p = .002; Naturalized: *r* = -0.92, p = .003).
+
+```{r echo=FALSE}
+
+NativePopulation <- Native$Population/1000000
+plot(NativePopulation, UNEMP$UN, main = "Native Population and Unemployment Rate",
+     ylab = "Unemployment Rate", xlab = "Native Population (Millions)", col = "blue",
+     ylim = c(0, 12))
+
+
+
+
+#cor.test(Native$Population, UNEMP$UN)
+
+NaturalizedPopulation <- Naturalized$Population/1000000
+plot(NaturalizedPopulation, UNEMP$UN, main = "Naturalized Population and Unemployment Rate",
+     ylab = "Unemployment Rate", xlab = "Naturalized Population (Millions)", col = "blue",
+     ylim = c(0, 12))
+
+
+#cor.test(Naturalized$Population, UNEMP$UN)
+
+
+
+```
+
+Finally, I looked for a relationship between Unemployment Rate and the Illegal immigrant population size and did not find a significant relationship (*r* = -0.46, p = 0.30).  Census records do not ask for immigration status, this data was found [here](http://immigration.procon.org/view.resource.php?resourceID=000844).   
+
+
+```{r echo=FALSE}
+
+UNEMPIll <- UNEMP$Illegal/1000000
+plot(UNEMPIll, UNEMP$UN, main = "Illegal Immigrant Population and Unemployment Rate",
+     ylab = "Unemployment Rate", xlab = "Illegal Population (Millions)", col = "blue",
+     ylim = c(0, 12))
+
+#cor.test(UNEMP$Illegal, UNEMP$UN)
+
+```
+
+
+
+
+
+##5 year total immigration by state
+
+The United States is a big country, and I thought it might be worthwhile to illustrate where the most immigration is taking place.  To examine this I looked at immigration numbers for each state and totaled them for the past five years. 
+
+Below is a map that indicates which states have had the heaviest influx of immigrants (both legal and illegal).  Again, this [data was obtained via publically available census records on population change](http://www.census.gov/data/datasets/2016/demo/popest/nation-total.html). 
+
+```{r echo=FALSE}
+
+
+state_choropleth(States_Map2, num_colors = 7,
+                 title = "Immigration by State")
+
+```
+
+
+I decided to dig a little deeper, and see if there is a correlation between unemployment and 5 year immigration numbers by state.  This gives us a much larger and more detailed data set than looking at the United States overall. 
+
+I found no relationship between [2016 state unemployment rates](https://www.bls.gov/web/laus/laumstrk.htm) and immigration numbers (*r* = 0.178, p = 0.21) or between [2014 violent crime rates](http://www.worldatlas.com/articles/the-most-dangerous-states-in-the-u-s.html) and immigration numbers (*r* = 0.226, p = 0.118).  However, when I examined the relationship between state unemployment rate and crime, there was a statistically significant correlation (*r* = 0.526, p < 0.001)
+
+```{r echo=FALSE}
+
+#cor.test(statescor$Unemployment, statescor$value)
+#cor.test(statescor2$Crime, statescor2$value)
+#cor.test(statescor3$Crime, statescor3$Unemployment)
+
+plot(statescor3$Crime, statescor3$Unemployment, main = "Crime and Unemployment Rates",
+     ylab = "Unemployment Rate (%)", xlab = "Crime (per 100K population)", col = "blue",
+     ylim = c(0, 10))
+
+
+
+```
+
+##Discussion Questions
+
+Data should be used to both raise and answer questions.  The analysis provided here answered some basic questions about recent immigration and unemployment rate in the United States, but raises many more.  
+
+I have vowed to keep my personal opinion off of this website, so I will refrain from sharing it with you here.  Instead I will offer some discussion questions to get those neurons firing. 
+
+1. What are the limitations of this analysis?  There are always, always, always limitations to any analysis.  One example here: the data covered here only go back to 2009, the scope of this analysis is limited. 
+
+2. Unemployment rate overall seems to be going down as population size is going up, but we know correlation does not imply causation.  What other factors could be at play? 
+
+3. If the population size of foreigner born non-citizens is not related to unemployment rate in the United States, how could this otherwise be impacting our country? 
+
+
