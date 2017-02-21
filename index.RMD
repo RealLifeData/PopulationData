@@ -1,6 +1,5 @@
 ---
-title: "Population, Immigration and Unemployment: an exploratory analysis"
-date: "February 12, 2017"
+title: "Immigration and Unemployment: an exploratory analysis"
 output: html_document
 ---
 
@@ -136,7 +135,7 @@ The purpose of this analysis was to examine potential relationships between the 
 Below is a graph that indicates the total native and immigrant population sizes in the united states from 2009-2015.   This data was obtained from publicly available [census records](https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml).   All data files and R code used in this analysis can be found on my [GitHub site](https://github.com/RealLifeData).
 
 
-##Population Graph USA
+##Population USA
 
 Population size has gone up since 2009, and this is true for native born citizens, foreign born citizens and foreign born non-citizens. 
 
