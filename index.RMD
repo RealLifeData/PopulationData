@@ -314,6 +314,7 @@ plot(statescor3$Crime, statescor3$Unemployment, main = "Crime and Unemployment R
 2. The unemployment rate fell from 9.9% to 6.3% (2009 - 2015).
 3. There were inverse correlations between population size and unemployment rate for the total US population, foreign born population, native born citizens and naturalized citizens.  There was not a significant relationship between population size of foreign born non-citizens and illegal immigrants. 
 4. When the data was broken down into a state-by-state analysis there was no relationship between immigration over the past 5 years and state unemployment rate.  Violent crime was also not correlated with changes in immigration.  However, unemployment and violent crime were significantly correlated when examined state-by-state. 
+
 ##Discussion Questions
 
 Data should be used to both raise and answer questions.  The analysis provided here answered some basic questions about recent immigration and unemployment rate in the United States, but raises many more.  
