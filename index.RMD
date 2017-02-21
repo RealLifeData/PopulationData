@@ -1,5 +1,5 @@
 ---
-title: "Immigration and Unemployment: an exploratory analysis"
+title: "Immigration and Unemployment"
 output: html_document
 ---
 
