@@ -1,4 +1,4 @@
-name: "Population, Immigration and Unemployment: an exploratory analysis"
+name: "Population Data"
 output_dir: "."
 navbar:
   title: ""
