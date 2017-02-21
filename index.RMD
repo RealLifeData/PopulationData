@@ -134,6 +134,7 @@ The purpose of this analysis was to examine potential relationships between the 
 
 Below is a graph that indicates the total native and immigrant population sizes in the united states from 2009-2015.   This data was obtained from publicly available [census records](https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml).   All data files and R code used in this analysis can be found on my [GitHub site](https://github.com/RealLifeData).
 
+&nbsp;
 
 ##Population USA
 
@@ -152,6 +153,7 @@ ggplot(Born_Graph, aes(Year, Population, fill=Group)) +
            
 ```
 
+&nbsp;
 
 ##Population Breakdown USA (millions)
 ```{r echo=FALSE}
@@ -159,6 +161,7 @@ ggplot(Born_Graph, aes(Year, Population, fill=Group)) +
 kable(US_Table1)
 ```
 
+&nbsp;
 
 ##Unemployment Rate
 
@@ -179,6 +182,7 @@ ggplot(UNEMP, aes(Year, UN)) +
 
 
 Importantly, **correlations do not imply causation....EVER**!  What does this mean?  Just because numbers tend to go up and down together doesn't mean that one variable is **causing** the other to do anything.  More simply put, correlations could capture something that happens by coincidence.  This is true no matter how strong a correlation is.  Correlation analyses are good indicators of where to deeper, and should never be interpreted as causal on their own. 
+&nbsp;
 
 
 ##Correlation Analyses
@@ -271,6 +275,7 @@ plot(UNEMPIll, UNEMP$UN, main = "Illegal Immigrant Population and Unemployment R
 
 ```
 
+&nbsp;
 
 
 
@@ -307,24 +312,36 @@ plot(statescor3$Crime, statescor3$Unemployment, main = "Crime and Unemployment R
 
 
 ```
+&nbsp;
 
 ##Summary
 
 1. All population sizes went up since 2009. 
+&nbsp;
+
 2. The unemployment rate fell from 9.9% to 6.3% (2009 - 2015).
+&nbsp;
+
 3. There were inverse correlations between population size and unemployment rate for the total US population, foreign born population, native born citizens and naturalized citizens.  There was not a significant relationship between population size of foreign born non-citizens and illegal immigrants. 
+&nbsp;
+
 4. When the data was broken down into a state-by-state analysis there was no relationship between immigration over the past 5 years and state unemployment rate.  Violent crime was also not correlated with changes in immigration.  However, unemployment and violent crime were significantly correlated when examined state-by-state. 
+&nbsp;
 
 ##Discussion Questions
 
 Data should be used to both raise and answer questions.  The analysis provided here answered some basic questions about recent immigration and unemployment rate in the United States, but raises many more.  
 
 I have vowed to keep my personal opinion off of this website, so I will refrain from sharing it with you here.  Instead I will offer some discussion questions to get those neurons firing. 
+&nbsp;
+
 
 1. What are the limitations of this analysis?  There are always, always, always limitations to any analysis.  One example here: the data covered here only go back to 2009, the scope of this analysis is limited. 
+&nbsp;
 
 2. Unemployment rate overall seems to be going down as population size is going up, but we know correlation does not imply causation.  What other factors could be at play? 
+&nbsp;
 
-3. If the population size of foreigner born non-citizens is not related to unemployment rate in the United States, how could this otherwise be impacting our country? 
+3. If the population size of foreign born non-citizens is not related to unemployment rate in the United States, how could this otherwise be impacting our country? 
 
 

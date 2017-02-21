@@ -80,6 +80,7 @@ h6 {
 
 </script>
 
+
 </head>
 
 <body>
@@ -216,10 +217,12 @@ $(document).ready(function () {
 
 <p>The purpose of this analysis was to examine potential relationships between the immigrant population size and the unemployment rate in the United States.</p>
 <p>Below is a graph that indicates the total native and immigrant population sizes in the united states from 2009-2015. This data was obtained from publicly available <a href="https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml">census records</a>. All data files and R code used in this analysis can be found on my <a href="https://github.com/RealLifeData">GitHub site</a>.</p>
+<p> </p>
 <div id="population-usa" class="section level2">
 <h2>Population USA</h2>
 <p>Population size has gone up since 2009, and this is true for native born citizens, foreign born citizens and foreign born non-citizens.</p>
 <p><img src="index_files/figure-html/unnamed-chunk-2-1.png" width="768" /></p>
+<p> </p>
 </div>
 <div id="population-breakdown-usa-millions" class="section level2">
 <h2>Population Breakdown USA (millions)</h2>
@@ -301,12 +304,13 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
+<p> </p>
 </div>
 <div id="unemployment-rate" class="section level2">
 <h2>Unemployment Rate</h2>
 <p>Despite the increase in population size, the unemployment rate has gone down since 2009. This means that if there is a correlation between unemployment rate and immigration into the United States, that it would be a <strong>negative</strong> relationship. This means that as immigration has gone <strong>up</strong>, that unemployment has gone <strong>down</strong>.</p>
 <p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>Importantly, <strong>correlations do not imply causation….EVER</strong>! What does this mean? Just because numbers tend to go up and down together doesn’t mean that one variable is <strong>causing</strong> the other to do anything. More simply put, correlations could capture something that happens by coincidence. This is true no matter how strong a correlation is. Correlation analyses are good indicators of where to deeper, and should never be interpreted as causal on their own.</p>
+<p>Importantly, <strong>correlations do not imply causation….EVER</strong>! What does this mean? Just because numbers tend to go up and down together doesn’t mean that one variable is <strong>causing</strong> the other to do anything. More simply put, correlations could capture something that happens by coincidence. This is true no matter how strong a correlation is. Correlation analyses are good indicators of where to deeper, and should never be interpreted as causal on their own.  </p>
 </div>
 <div id="correlation-analyses" class="section level2">
 <h2>Correlation Analyses</h2>
@@ -319,6 +323,7 @@ $(document).ready(function () {
 <p><img src="index_files/figure-html/unnamed-chunk-8-1.png" width="672" /><img src="index_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
 <p>Finally, I looked for a relationship between Unemployment Rate and the Illegal immigrant population size and did not find a significant relationship (<em>r</em> = -0.46, p = 0.30). Census records do not ask for immigration status, this data was found <a href="http://immigration.procon.org/view.resource.php?resourceID=000844">here</a>.</p>
 <p><img src="index_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p> </p>
 </div>
 <div id="year-total-immigration-by-state" class="section level2">
 <h2>5 year total immigration by state</h2>
@@ -327,25 +332,25 @@ $(document).ready(function () {
 <p><img src="index_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>I decided to dig a little deeper, and see if there is a correlation between unemployment and 5 year immigration numbers by state. This gives us a much larger and more detailed data set than looking at the United States overall.</p>
 <p>I found no relationship between <a href="https://www.bls.gov/web/laus/laumstrk.htm">2016 state unemployment rates</a> and immigration numbers (<em>r</em> = 0.178, p = 0.21) or between <a href="http://www.worldatlas.com/articles/the-most-dangerous-states-in-the-u-s.html">2014 violent crime rates</a> and immigration numbers (<em>r</em> = 0.226, p = 0.118). However, when I examined the relationship between state unemployment rate and crime, there was a statistically significant correlation (<em>r</em> = 0.526, p &lt; 0.001)</p>
-<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" width="672" />  </p>
 </div>
 <div id="summary" class="section level2">
 <h2>Summary</h2>
 <ol style="list-style-type: decimal">
-<li>All population sizes went up since 2009.</li>
-<li>The unemployment rate fell from 9.9% to 6.3% (2009 - 2015).</li>
-<li>There were inverse correlations between population size and unemployment rate for the total US population, foreign born population, native born citizens and naturalized citizens. There was not a significant relationship between population size of foreign born non-citizens and illegal immigrants.</li>
-<li>When the data was broken down into a state-by-state analysis there was no relationship between immigration over the past 5 years and state unemployment rate. Violent crime was also not correlated with changes in immigration. However, unemployment and violent crime were significantly correlated when examined state-by-state.</li>
+<li><p>All population sizes went up since 2009.  </p></li>
+<li><p>The unemployment rate fell from 9.9% to 6.3% (2009 - 2015).  </p></li>
+<li><p>There were inverse correlations between population size and unemployment rate for the total US population, foreign born population, native born citizens and naturalized citizens. There was not a significant relationship between population size of foreign born non-citizens and illegal immigrants.  </p></li>
+<li><p>When the data was broken down into a state-by-state analysis there was no relationship between immigration over the past 5 years and state unemployment rate. Violent crime was also not correlated with changes in immigration. However, unemployment and violent crime were significantly correlated when examined state-by-state.  </p></li>
 </ol>
 </div>
 <div id="discussion-questions" class="section level2">
 <h2>Discussion Questions</h2>
 <p>Data should be used to both raise and answer questions. The analysis provided here answered some basic questions about recent immigration and unemployment rate in the United States, but raises many more.</p>
-<p>I have vowed to keep my personal opinion off of this website, so I will refrain from sharing it with you here. Instead I will offer some discussion questions to get those neurons firing.</p>
+<p>I have vowed to keep my personal opinion off of this website, so I will refrain from sharing it with you here. Instead I will offer some discussion questions to get those neurons firing.  </p>
 <ol style="list-style-type: decimal">
-<li><p>What are the limitations of this analysis? There are always, always, always limitations to any analysis. One example here: the data covered here only go back to 2009, the scope of this analysis is limited.</p></li>
-<li><p>Unemployment rate overall seems to be going down as population size is going up, but we know correlation does not imply causation. What other factors could be at play?</p></li>
-<li><p>If the population size of foreigner born non-citizens is not related to unemployment rate in the United States, how could this otherwise be impacting our country?</p></li>
+<li><p>What are the limitations of this analysis? There are always, always, always limitations to any analysis. One example here: the data covered here only go back to 2009, the scope of this analysis is limited.  </p></li>
+<li><p>Unemployment rate overall seems to be going down as population size is going up, but we know correlation does not imply causation. What other factors could be at play?  </p></li>
+<li><p>If the population size of foreign born non-citizens is not related to unemployment rate in the United States, how could this otherwise be impacting our country?</p></li>
 </ol>
 </div>
 
@@ -377,7 +382,10 @@ $(document).ready(function () {
   })();
 </script>
 
+
 <!-- Go to www.addthis.com/dashboard to customize your tools --> <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-589036a8549be1ce"></script>
+
+
 
 </body>
 </html>
