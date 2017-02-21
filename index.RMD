@@ -181,7 +181,7 @@ ggplot(UNEMP, aes(Year, UN)) +
 ```
 
 
-Importantly, **correlations do not imply causation....EVER**!  What does this mean?  Just because numbers tend to go up and down together doesn't mean that one variable is **causing** the other to do anything.  More simply put, correlations could capture something that happens by coincidence.  This is true no matter how strong a correlation is.  Correlation analyses are good indicators of where to deeper, and should never be interpreted as causal on their own. 
+Importantly, **correlations do not imply causation....EVER**!  What does this mean?  Just because numbers tend to go up and down together doesn't mean that one variable is **causing** the other to do anything.  More simply put, correlations could capture something that happens by coincidence.  This is true no matter how strong a correlation is.  Correlation analyses are good indicators of where to look deeper, and should never be interpreted as causal on their own. 
 &nbsp;
 
 
