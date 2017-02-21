@@ -4,6 +4,17 @@ title: "About Report"
 &nbsp;
 &nbsp;
 
+##How to interpret a correlation: 
+
+
+The *r* refers to the Pearson Correlation Coefficient, and it tells us how strong a relationship is between 2 sets of numbers. In this example, the *r* = -0.92.  This tells us a couple of things. 
+The first is that the relationship is inverse, meaning that as one variable goes up the other goes down. This is indicated by the negative symbol in front of the statistic.  Importantly, when someone refers to a negative correlation, this means that the variables tend to change in **opposite directions**, not that they go down with one another.  A positive correlation means the reverse, that the numbers increase and decrease **in tandum with one another**.  Here we have a negative correlation because as the population rate goes up, the unemployment rate goes down.  
+    
+The second part of the statistic is also useful! The *r* refers to the Pearson Correlation Coefficient. This is a number between 0 and 1, the closer the number is to 1 then the stronger the relationship. An *r* value of 0.92 is considered really strong, because it is very close to 1.  How do we know if it is *strong enough* to say that there is a "significant relationship"?  We use the p-value to make that call. 
+    
+The p-value is typically reported at the end of the statistic, and is referred to as a "significance test".  What is a significance test?  A significance test determines the probability that you would have found the same result if the correlation coefficient (*r*) was in reality a 0.  Like the *r* statistic, the p-value is also reported as number between 0 and 1.  A p-value of 0.02 means indicates that there is a 2% probability that the relationship examined is due to chance.  Most fields of study require a p-value of 0.05  or below to indicate statistical significance. This is the "gold standard" and estimates the influence of chance to be less than 5% likely. 
+
+
 
 All of the data and R code for this and other projects can be found on my [GitHub](https://github.com/RealLifeData) site. 
 
