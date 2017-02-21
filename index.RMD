@@ -1,5 +1,5 @@
 ---
-title: "Immigration and Unemployment"
+title: "They took our jobs!"
 output: html_document
 ---
 
@@ -155,7 +155,7 @@ ggplot(Born_Graph, aes(Year, Population, fill=Group)) +
 
 &nbsp;
 
-##Population Breakdown USA (millions)
+##Population Breakdown USA (Millions)
 ```{r echo=FALSE}
 
 kable(US_Table1)
@@ -295,7 +295,7 @@ state_choropleth(States_Map2, num_colors = 7,
 ```
 
 
-I decided to dig a little deeper, and see if there is a correlation between unemployment and 5 year immigration numbers by state.  This gives us a much larger and more detailed data set than looking at the United States overall. 
+I decided to dig a little deeper, and see if there is a correlation between unemployment and 5 year immigration numbers by state.  This gives us a much larger and more detailed data set than looking at the United States as a whole 
 
 I found no relationship between [2016 state unemployment rates](https://www.bls.gov/web/laus/laumstrk.htm) and immigration numbers (*r* = 0.178, p = 0.21) or between [2014 violent crime rates](http://www.worldatlas.com/articles/the-most-dangerous-states-in-the-u-s.html) and immigration numbers (*r* = 0.226, p = 0.118).  However, when I examined the relationship between state unemployment rate and crime, there was a statistically significant correlation (*r* = 0.526, p < 0.001)
 
@@ -342,6 +342,6 @@ I have vowed to keep my personal opinion off of this website, so I will refrain 
 2. Unemployment rate overall seems to be going down as population size is going up, but we know correlation does not imply causation.  What other factors could be at play? 
 &nbsp;
 
-3. If the population size of foreign born non-citizens is not related to unemployment rate in the United States, how could this otherwise be impacting our country? 
+3. If the population size of foreign born non-citizens is not related to unemployment rate in the United States, in what other ways may this be impacting our country? 
 
 
