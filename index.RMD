@@ -133,7 +133,7 @@ statescor3 <- merge(SUNE, Crime, by = "region")
 
 The purpose of this analysis was to examine potential relationships between the immigrant population size and the unemployment rate in the United States. 
 
-Below is a graph that indicates the total native and immigrant population sizes in the united states from 2009-2015.   This data was obtained from publicly available [census records](https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml).   All data files and R code used in this analysis can be found on my [GitHub site](https://github.com/RealLifeData).
+Below is a graph that indicates the total native and immigrant population sizes in the united states from 2009-2015.   This data was obtained from publicly available [census records](https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml).   All data files and R code used in this analysis can be found on my [GitHub site](https://github.com/emilyswebber).
 
 &nbsp;
 
@@ -190,7 +190,7 @@ Importantly, **correlations do not imply causation....EVER**!  What does this me
 
 First I ran a simple correlation on overall population size and unemployment rate.  This was statistically significant (*r* = -0.92, p = .002).  Results showed a strong inverse relationship between the total US population size and unemployment rate (*r* = 0.92) and this is unlikely due to chance (p = 0.002).
     
-[What do the numbers in parentheses mean?](https://reallifedata.github.io/PopulationData/about.html)
+[What do the numbers in parentheses mean?](https://emilyswebber.github.io/PopulationData/about.html)
 
     
 ```{r echo=FALSE}

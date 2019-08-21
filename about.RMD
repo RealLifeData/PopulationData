@@ -4,7 +4,7 @@ title: "About Report"
 &nbsp;
 &nbsp;
 
-##How to interpret a correlation: 
+## How to interpret a correlation: 
 
 
 The *r* refers to the Pearson Correlation Coefficient, and it tells us how strong a relationship is between 2 sets of numbers. In this example, the *r* = -0.92.  This tells us a couple of things. 
@@ -16,7 +16,7 @@ The p-value is typically reported at the end of the statistic, and is referred t
 
 
 
-All of the data and R code for this and other projects can be found on my [GitHub](https://github.com/RealLifeData) site. 
+All of the data and R code for this and other projects can be found on my [GitHub](https://github.com/emilyswebber) site. 
 
 <!--html_preserve-->
 
