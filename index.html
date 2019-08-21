@@ -313,11 +313,14 @@ $(document).ready(function () {
 <p>The purpose of this analysis was to examine potential relationships between the immigrant population size and the unemployment rate in the United States.</p>
 <p>Below is a graph that indicates the total native and immigrant population sizes in the united states from 2009-2015. This data was obtained from publicly available <a href="https://factfinder.census.gov/faces/nav/jsf/pages/index.xhtml">census records</a>. All data files and R code used in this analysis can be found on my <a href="https://github.com/emilyswebber">GitHub site</a>.</p>
 <p> </p>
-<p>##Population USA</p>
+<div id="population-usa" class="section level2">
+<h2>Population USA</h2>
 <p>Population size has gone up since 2009, and this is true for native born citizens, foreign born citizens and foreign born non-citizens.</p>
 <p><img src="index_files/figure-html/unnamed-chunk-2-1.png" width="768" /></p>
 <p> </p>
-<p>##Population Breakdown USA (Millions)</p>
+</div>
+<div id="population-breakdown-usa-millions" class="section level2">
+<h2>Population Breakdown USA (Millions)</h2>
 <table>
 <thead>
 <tr class="header">
@@ -397,11 +400,15 @@ $(document).ready(function () {
 </tbody>
 </table>
 <p> </p>
-<p>##Unemployment Rate</p>
+</div>
+<div id="unemployment-rate" class="section level2">
+<h2>Unemployment Rate</h2>
 <p>Despite the increase in population size, the unemployment rate has gone down since 2009. This means that if there is a correlation between unemployment rate and immigration into the United States, that it would be a <strong>negative</strong> relationship. This means that as immigration has gone <strong>up</strong>, that unemployment has gone <strong>down</strong>.</p>
 <p><img src="index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>Importantly, <strong>correlations do not imply causation….EVER</strong>! What does this mean? Just because numbers tend to go up and down together doesn’t mean that one variable is <strong>causing</strong> the other to do anything. More simply put, correlations could capture something that happens by coincidence. This is true no matter how strong a correlation is. Correlation analyses are good indicators of where to look deeper, and should never be interpreted as causal on their own.  </p>
-<p>##Correlation Analyses</p>
+</div>
+<div id="correlation-analyses" class="section level2">
+<h2>Correlation Analyses</h2>
 <p>First I ran a simple correlation on overall population size and unemployment rate. This was statistically significant (<em>r</em> = -0.92, p = .002). Results showed a strong inverse relationship between the total US population size and unemployment rate (<em>r</em> = 0.92) and this is unlikely due to chance (p = 0.002).</p>
 <p><a href="https://emilyswebber.github.io/PopulationData/about.html">What do the numbers in parentheses mean?</a></p>
 <p><img src="index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
@@ -412,27 +419,23 @@ $(document).ready(function () {
 <p>Finally, I looked for a relationship between Unemployment Rate and the Illegal immigrant population size and did not find a significant relationship (<em>r</em> = -0.46, p = 0.30). Census records do not ask for immigration status, this data was found <a href="http://immigration.procon.org/view.resource.php?resourceID=000844">here</a>.</p>
 <p><img src="index_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p> </p>
-<p>##5 year total immigration by state</p>
+</div>
+<div id="year-total-immigration-by-state" class="section level2">
+<h2>5 year total immigration by state</h2>
 <p>The United States is a big country, and I thought it might be worthwhile to illustrate where the most immigration is taking place. To examine this I looked at immigration numbers for each state and totaled them for the past five years.</p>
 <p>Below is a map that indicates which states have had the heaviest influx of immigrants (both legal and illegal). Again, this data was obtained via publicly available <a href="http://www.census.gov/data/datasets/2016/demo/popest/nation-total.html">census records on population change</a>.</p>
 <p><img src="index_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>I decided to dig a little deeper, and see if there is a correlation between unemployment and 5 year immigration numbers by state. This gives us a much larger and more detailed data set than looking at the United States as a whole</p>
 <p>I found no relationship between <a href="https://www.bls.gov/web/laus/laumstrk.htm">2016 state unemployment rates</a> and immigration numbers (<em>r</em> = 0.178, p = 0.21) or between <a href="http://www.worldatlas.com/articles/the-most-dangerous-states-in-the-u-s.html">2014 violent crime rates</a> and immigration numbers (<em>r</em> = 0.226, p = 0.118). However, when I examined the relationship between state unemployment rate and crime, there was a statistically significant correlation (<em>r</em> = 0.526, p &lt; 0.001)</p>
 <p><img src="index_files/figure-html/unnamed-chunk-11-1.png" width="672" />  </p>
-<p>##Summary</p>
+</div>
+<div id="summary" class="section level2">
+<h2>Summary</h2>
 <ol style="list-style-type: decimal">
 <li><p>All population sizes went up since 2009.  </p></li>
 <li><p>The unemployment rate fell from 9.9% to 6.3% (2009 - 2015).  </p></li>
 <li><p>There were inverse correlations between population size and unemployment rate for the total US population, foreign born population, native born citizens and naturalized citizens. There was not a significant relationship between population size of foreign born non-citizens and illegal immigrants.  </p></li>
 <li><p>When the data was broken down into a state-by-state analysis there was no relationship between immigration over the past 5 years and state unemployment rate. Violent crime was also not correlated with changes in immigration. However, unemployment and violent crime were significantly correlated when examined state-by-state.  </p></li>
-</ol>
-<p>##Discussion Questions</p>
-<p>Data should be used to both raise and answer questions. The analysis provided here answered some basic questions about recent immigration and unemployment rate in the United States, but raises many more.</p>
-<p>I have vowed to keep my personal opinion off of this website, so I will refrain from sharing it with you here. Instead I will offer some discussion questions to get those neurons firing.  </p>
-<ol style="list-style-type: decimal">
-<li><p>What are the limitations of this analysis? There are always, always, always limitations to any analysis. One example here: the data covered here only go back to 2009, the scope of this analysis is limited.  </p></li>
-<li><p>Unemployment rate overall seems to be going down as population size is going up, but we know correlation does not imply causation. What other factors could be at play?  </p></li>
-<li><p>If the population size of foreign born non-citizens is not related to unemployment rate in the United States, in what other ways may this be impacting our country?</p></li>
 </ol>
 
 
@@ -454,6 +457,7 @@ $(document).ready(function () {
 
 
 
+</div>
 
 
 

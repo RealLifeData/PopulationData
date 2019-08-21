@@ -137,7 +137,7 @@ Below is a graph that indicates the total native and immigrant population sizes 
 
 &nbsp;
 
-##Population USA
+## Population USA
 
 Population size has gone up since 2009, and this is true for native born citizens, foreign born citizens and foreign born non-citizens. 
 
@@ -156,7 +156,7 @@ ggplot(Born_Graph, aes(Year, Population, fill=Group)) +
 
 &nbsp;
 
-##Population Breakdown USA (Millions)
+## Population Breakdown USA (Millions)
 ```{r echo=FALSE}
 
 kable(US_Table1)
@@ -164,7 +164,7 @@ kable(US_Table1)
 
 &nbsp;
 
-##Unemployment Rate
+## Unemployment Rate
 
 Despite the increase in population size, the unemployment rate has gone down since 2009.  This means that if there is a correlation between unemployment rate and immigration into the United States, that it would be a **negative** relationship.  This means that as immigration has gone **up**, that unemployment has gone **down**.  
 
@@ -186,7 +186,7 @@ Importantly, **correlations do not imply causation....EVER**!  What does this me
 &nbsp;
 
 
-##Correlation Analyses
+## Correlation Analyses
 
 First I ran a simple correlation on overall population size and unemployment rate.  This was statistically significant (*r* = -0.92, p = .002).  Results showed a strong inverse relationship between the total US population size and unemployment rate (*r* = 0.92) and this is unlikely due to chance (p = 0.002).
     
@@ -281,7 +281,7 @@ plot(UNEMPIll, UNEMP$UN, main = "Illegal Immigrant Population and Unemployment R
 
 
 
-##5 year total immigration by state
+## 5 year total immigration by state
 
 The United States is a big country, and I thought it might be worthwhile to illustrate where the most immigration is taking place.  To examine this I looked at immigration numbers for each state and totaled them for the past five years. 
 
@@ -315,7 +315,7 @@ plot(statescor3$Crime, statescor3$Unemployment, main = "Crime and Unemployment R
 ```
 &nbsp;
 
-##Summary
+## Summary
 
 1. All population sizes went up since 2009. 
 &nbsp;
@@ -329,21 +329,6 @@ plot(statescor3$Crime, statescor3$Unemployment, main = "Crime and Unemployment R
 4. When the data was broken down into a state-by-state analysis there was no relationship between immigration over the past 5 years and state unemployment rate.  Violent crime was also not correlated with changes in immigration.  However, unemployment and violent crime were significantly correlated when examined state-by-state. 
 &nbsp;
 
-##Discussion Questions
-
-Data should be used to both raise and answer questions.  The analysis provided here answered some basic questions about recent immigration and unemployment rate in the United States, but raises many more.  
-
-I have vowed to keep my personal opinion off of this website, so I will refrain from sharing it with you here.  Instead I will offer some discussion questions to get those neurons firing. 
-&nbsp;
-
-
-1. What are the limitations of this analysis?  There are always, always, always limitations to any analysis.  One example here: the data covered here only go back to 2009, the scope of this analysis is limited. 
-&nbsp;
-
-2. Unemployment rate overall seems to be going down as population size is going up, but we know correlation does not imply causation.  What other factors could be at play? 
-&nbsp;
-
-3. If the population size of foreign born non-citizens is not related to unemployment rate in the United States, in what other ways may this be impacting our country? 
 
 
 <!--html_preserve-->
